@@ -8,7 +8,7 @@
     "dev": "nodemon --exec npm run restart",
     "restart": "rimraf dist && npm run build && npm run start",
     "start": "node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=testing jest --forceExit --detectOpenHandles  --silent"
   },
   "repository": {
     "type": "git",
@@ -65,6 +65,16 @@
     "nodemon": "^1.18.3",
     "prettier": "^1.15.2",
     "rimraf": "^2.6.2",
-    "tslint": "^5.16.0"
+    "tslint": "^5.16.0",
+    "jest": "^23.6.0"
+  },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/",
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "dist/"
+    ],
+    "restoreMocks": true
   }
 }
