@@ -1,0 +1,17 @@
+language: node_js
+node_js: 
+  - "stable"
+addons:
+    code_climate:
+        repo_token: $supersecrettoken
+services:
+  - mongodb
+cache:
+  directories:
+    - "node_modules"
+before_script:
+  - npm install -g codeclimate-test-reporter
+  - npm install
+
+script:
+  - npm run test
