@@ -16,5 +16,19 @@ module.exports = {
   },
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.js', 'src/**/*.ts', 'src/**/*.tsx'],
-  coveragePathIgnorePatterns: ['/node_modules'],
+  coverageThreshold: {
+    global: {
+      branches: 90,
+      functions: 90,
+      lines: 90,
+      statements: 75,
+    },
+  },
+  coveragePathIgnorePatterns: [
+    '/node_modules',
+    '<rootDir>/src/config',
+    '<rootDir>/src/utils',
+    '<rootDir>/src/index.js',
+    '<rootDir>/src/server.js',
+  ],
 }
