@@ -1,5 +1,5 @@
 import request from 'supertest'
-import { app } from '../server'
+import app from '../app'
 
 describe('API dummy test', () => {
   test('setup test', () => {
@@ -8,12 +8,19 @@ describe('API dummy test', () => {
 })
 
 describe('make reqests to the API', () => {
-  it('should respond with json data', (done) => {
-    request(app)
-      .get('api/data')
+  it('should respond with json data', () => {
+    return request(app)
+      .get('/api/data')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
-      .expect(200)
-    done()
+      .then((res) => {
+        expect(res.status).toBe(200)
+        expect(res.body.message).toBe('initial server setup')
+      })
+  })
+
+  it('Respond with 404 on wrong request', async () => {
+    const response = await request(app).post('/api/data')
+    expect(response.status).toBe(404)
   })
 })
