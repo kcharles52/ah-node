@@ -2,6 +2,11 @@ module.exports = {
   verbose: true,
   testURL: 'http://localhost/',
   roots: ['<rootDir>/src'],
+  testEnvironment: 'node',
+  setupFilesAfterEnv: ['<rootDir>/test-db-setup.js'],
+  testPathIgnorePatterns: ['dist/'],
+  restoreMocks: true,
+
   globals: {
     'ts-jest': {
       useBabelrc: true,
@@ -16,19 +21,19 @@ module.exports = {
   },
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.js', 'src/**/*.ts', 'src/**/*.tsx'],
-  coverageThreshold: {
-    global: {
-      branches: 90,
-      functions: 90,
-      lines: 90,
-      statements: 75,
-    },
-  },
+  // coverageThreshold: {
+  //   global: {
+  //     branches: 90,
+  //     functions: 90,
+  //     lines: 90,
+  //     statements: 75,
+  //   },
+  // },
   coveragePathIgnorePatterns: [
     '/node_modules',
     '<rootDir>/src/config',
-    '<rootDir>/src/utils',
     '<rootDir>/src/index.js',
     '<rootDir>/src/server.js',
+    '<rootDir>/src/utils/db.js',
   ],
 }
